@@ -181,6 +181,25 @@ html,body{
     border-radius: 3vw;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.055), -5px -5px 10px rgba(0, 0, 0, 0.037);
 }
+#page2 #middle #right{
+    color: white;
+}
+#page2 #middle #right #top #top-left{
+    background-color: #131010;
+    height: 10vw;
+    width: 10vw;
+    border-radius: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1vw;
+    border: 1px solid rgb(118, 118, 118);
+}
+#page2 #middle #right #top #top-left i{
+    font-size: 2vw;
+
+}
 
 #page2 #middle #left #middleleft{
     display: flex;
@@ -400,7 +419,11 @@ html,body{
     position: relative;
     border-radius: 0 0 8vw 8vw;
     padding:2vw;
-}
+    background: #FFF;
+    background-image: linear-gradient(rgba(225, 225, 225, 0.7) .1em, transparent .1em), linear-gradient(90deg, rgba(225, 225, 225, 0.7) .1em, transparent .1em);
+    background-size: 5em 5em;
+  }
+
 #page5 h1{
     color: #4474ba;
     font-size: 13vw;
@@ -438,19 +461,8 @@ html,body{
     justify-content:center;
     flex-direction: column;
     padding: 2vw;
-    width: 50%;
+    /* width: 50%; */
     gap: 5vw;
-}
-#page7 #middleleft button{
-    background-color:#4474ba;
-    color: white;
-    border: none;
-    height: 3.5vw;
-    width: 12vw;
-    border-radius: 1vw;
-    font-size: 1.5vw;
-    box-shadow: 5px 5px 10px #4473ba69, -5px -5px 10px #4473ba69;
-    margin-top: 2vw;
 }
 #page7 #middleleft #middleleft-txt h1{
     font-weight: 300;
@@ -466,9 +478,11 @@ html,body{
 }
 #page7 #left{
     height: 35vw;
-    background-color: white;
+    background-color: #F9F9F9;
     width: 40vw;
     border-radius: 3vw;
+    background-image: linear-gradient(rgba(225, 225, 225, 0.7) .1em, transparent .1em), linear-gradient(90deg, rgba(225, 225, 225, 0.7) .1em, transparent .1em);
+    background-size: 5em 5em;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.055), -5px -5px 10px rgba(0, 0, 0, 0.037);
 }
 #page7 #middleright{
@@ -477,20 +491,10 @@ html,body{
     justify-content:center;
     flex-direction: column;
     padding: 2vw;
-    width: 50%;
+    /* width: 50%; */
     gap: 5vw;
 }
-#page7 #middleright button{
-    background-color:#4474ba;
-    color: white;
-    border: none;
-    height: 3.5vw;
-    width: 12vw;
-    border-radius: 1vw;
-    font-size: 1.5vw;
-    box-shadow: 5px 5px 10px #4473ba69, -5px -5px 10px #4473ba69;
-    margin-top: 2vw;
-}
+
 #page7 #middleright #middleright-txt h1{
     font-weight: 300;
     /* font-size: 1vw; */
@@ -505,26 +509,31 @@ html,body{
 }
 #page7 #right{
     height: 35vw;
-    background-color: white;
+    background-color: #f9f9f9;
     width: 40vw;
     border-radius: 3vw;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.055), -5px -5px 10px rgba(0, 0, 0, 0.037);
+    background-image: linear-gradient(rgba(225, 225, 225, 0.7) .1em, transparent .1em), linear-gradient(90deg, rgba(225, 225, 225, 0.7) .1em, transparent .1em);
+    background-size: 5em 5em;
 }
 #page8{
-    min-height: 100vh;
+    min-height: 75vh;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #f2f2f2;
     position: relative;
     /* border-radius: 0 0 8vw 8vw; */
     padding:2vw;
-}
-#page8 h1{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    flex-direction: column;
+    text-align: center;
+    gap: 2vw;
+}
+#page8 h1{
     color: black;
     font-weight: 500;
-    font-size: 5vw;
+    font-size: 8vw;
 }
 #page8 img{
     /* border: 1px solid black; */
@@ -534,20 +543,26 @@ html,body{
     border-radius: 2vw;
     box-shadow: 5px 5px 10px #4473ba69, -5px -5px 10px #4473ba69;
 }
-
+#page8 #btn button{
+    padding: 1vw;
+    width: 10vw;
+    font-size: 1.1vw;
+    border-radius: 1.5vw;
+    border: none;
+}
+#page8 #btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
 #page8 #img{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#page9{
-    min-height: 100vh;
-    width: 100%;
-    background-color: #ffffff;
-    position: relative;
-    /* border-radius: 0 0 8vw 8vw; */
-    padding:2vw;
-}
+
+
 #page10{
     min-height: 120vh;
     width: 100%;
@@ -585,4 +600,5 @@ html,body{
 #page10 #bottom h1{
     color: white;
     font-size: 15vw;
+    margin-top: 10vw;
 }

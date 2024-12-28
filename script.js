@@ -79,3 +79,27 @@ if (target) {
 } else {
     console.warn("Target #page8 h1 not found for Intersection Observer.");
 }
+
+
+gsap.from(["#page7 #left", "#page7 #right"], {
+    scrollTrigger: {
+        trigger: "#page7",
+        scroller: "#main",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+        markers: false,
+    },
+    x: (index) => (index === 0 ? -900 : 900),
+    opacity: 0,
+    ease: "power2.out",
+    duration: 1,
+});
+
+// var tl = gsap.timeline();
+
+//     tl.from("#page1 #middle #txt", {
+//       y: "-110", 
+//       duration: 1.5, 
+//       ease: "power3.out", 
+//     });

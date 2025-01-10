@@ -17,7 +17,7 @@ html,body{
     width: 100%;
     background-color: #ffffff;
     position: relative;
-    padding:2vw;
+    padding:1vw;
 }
 #page1 #left{
     width: 50%;
@@ -100,4 +100,5 @@ html,body{
 #page1 #left #bottom a{
     text-decoration: none;
     color: black;
+    margin-top: -2vw;
 }

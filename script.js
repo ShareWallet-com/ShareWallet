@@ -103,3 +103,28 @@ gsap.from(["#page7 #left", "#page7 #right"], {
 //       duration: 1.5, 
 //       ease: "power3.out", 
 //     });
+
+
+
+
+barba.init({
+    transitions: [
+        {
+            name: 'flip-transition',
+            leave(data) {
+                return gsap.to(data.current.container, {
+                    rotateY: 90,
+                    opacity: 0,
+                    duration: 0.5,
+                });
+            },
+            enter(data) {
+                return gsap.from(data.next.container, {
+                    rotateY: -90,
+                    opacity: 0,
+                    duration: 0.5,
+                });
+            }
+        }
+    ]
+});

@@ -9,10 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.css">
+    <script src="https://unpkg.com/@barba/core"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
 </head>
 <body>
-    <div id="main">
+    <div id="main" data-barba="wrapper">
         
         <div id="page1">
             <div id="nav">
@@ -25,8 +27,8 @@
                     <a href="#">About</a>
                     <a href="#">Contact</a>
                 </div>
-                <div id="nav-right">
-                    <button> <a href="./login/login.html" style="text-decoration: none; color: black;">Login/Signup</a></button>
+                <div id="nav-right" data-barba="container" data-barba-namespace="home">
+                    <button id="main-btn"> <a href="./login/login.html" style="text-decoration: none; color: black;">Login/Signup</a></button>
                 </div>
             </div>
             <video id="video" loop autoplay muted src="./assests/ramos-promo-half.mp4" data-scroll data-scroll-speed="-1" data-scroll-direction="horizontal"></video>

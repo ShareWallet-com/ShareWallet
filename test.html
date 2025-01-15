@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard-Sha₹e.Wallet</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #page1 {
+            height: 100vh;
+            display: flex;
+            background-color: #f5f5f5;
+        }
+
+        #top {
+            position: absolute;
+            top: 2%;
+            left: 5%;
+        }
+
+        #top h1 {
+            font-size: 2.5vw;
+            font-weight: bold;
+        }
+
+        #nav {
+            width: 5vw;
+            background-color: #4474ba;
+            height: 90%;
+            border-radius: 1vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2vw;
+            font-size: 2vw;
+        }
+
+        #nav i {
+            background-color: white;
+            padding: 0.5vw;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all ease-in-out 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #nav i:hover {
+            background-color: black;
+            color: white;
+        }
+
+        #dashboard-content {
+            flex: 1;
+            margin-left: 7vw;
+            padding: 2vw;
+            background-color: white;
+            border-radius: 1vw;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            font-size: 2.5vw;
+            margin-bottom: 2vw;
+        }
+
+        .info-boxes {
+            display: flex;
+            gap: 2vw;
+            margin-bottom: 2vw;
+        }
+
+        .info-boxes .box {
+            background-color: #f0f0f0;
+            padding: 2vw;
+            border-radius: 1vw;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            text-align: center;
+        }
+
+        .info-boxes .box h3 {
+            font-size: 1.5vw;
+            margin-bottom: 1vw;
+        }
+
+        .info-boxes .box p {
+            font-size: 1.2vw;
+        }
+
+        .action-btn {
+            padding: 1vw 2vw;
+            background-color: #4474ba;
+            color: white;
+            border: none;
+            border-radius: 0.5vw;
+            font-size: 1.5vw;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .action-btn:hover {
+            background-color: #345a8a;
+        }
+    </style>
+</head>
+<body>
+    <div id="page1">
+        <div id="nav">
+            <i class="ri-dashboard-line" data-section="overview"></i>
+            <i class="ri-wallet-line" data-section="wallet"></i>
+            <i class="ri-send-plane-line" data-section="transfer"></i>
+            <i class="ri-user-add-line" data-section="add-user"></i>
+            <i class="ri-contacts-fill" data-section="contacts"></i>
+            <i class="ri-settings-3-fill" data-section="settings"></i>
+            <i class="ri-logout-box-r-fill" data-section="logout"></i>
+        </div>
+        <div id="dashboard-content">
+            <!-- Overview Section -->
+            <div id="overview" class="section active">
+                <h2>Welcome to ShareWallet</h2>
+                <div class="info-boxes">
+                    <div class="box">
+                        <h3>Total Amount</h3>
+                        <p>₹12,345</p>
+                    </div>
+                    <div class="box">
+                        <h3>Friend Groups</h3>
+                        <p>4 Active Groups</p>
+                    </div>
+                    <div class="box">
+                        <h3>Emergency Funds</h3>
+                        <p>₹3,000 Available</p>
+                    </div>
+                </div>
+                <button class="action-btn">Request Emergency Fund</button>
+            </div>
+
+            <!-- Wallet Section -->
+            <div id="wallet" class="section">
+                <h2>Wallet Overview</h2>
+                <p>Your wallet balance: ₹8,000</p>
+            </div>
+
+            <!-- Transfer Section -->
+            <div id="transfer" class="section">
+                <h2>Transfer Funds</h2>
+                <p>Feature to send funds to your friends.</p>
+            </div>
+
+            <!-- Add User Section -->
+            <div id="add-user" class="section">
+                <h2>Add a User</h2>
+                <p>Add your friends to a group for collaborative saving.</p>
+            </div>
+
+            <!-- Contacts Section -->
+            <div id="contacts" class="section">
+                <h2>Contacts</h2>
+                <p>Manage your contacts and groups here.</p>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settings" class="section">
+                <h2>Settings</h2>
+                <p>Adjust your preferences and account settings.</p>
+            </div>
+
+            <!-- Logout Section -->
+            <div id="logout" class="section">
+                <h2>Logout</h2>
+                <p>You have successfully logged out.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript for showing/hiding sections
+        document.addEventListener("DOMContentLoaded", () => {
+            const navIcons = document.querySelectorAll("#nav i");
+            const sections = document.querySelectorAll(".section");
+
+            navIcons.forEach(icon => {
+                icon.addEventListener("click", () => {
+                    const sectionToShow = icon.getAttribute("data-section");
+
+                    // Hide all sections
+                    sections.forEach(section => section.classList.remove("active"));
+
+                    // Show the clicked section
+                    document.getElementById(sectionToShow).classList.add("active");
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -186,35 +186,131 @@ html,body{
     background-color: #345a8a;
 }
 
-#page1 #dashboard-content #overview h2{
-    font-size: 3vw;
-    font-size: 300;
+#page1 #dashboard-content #overview {
+    padding: 2vw;
+    font-family: 'Segoe UI', sans-serif;
 }
-#page1 #dashboard-content #overview h2 span{
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2vw;
+}
+
+.header h2 {
+    font-size: 2.4vw;
+    font-weight: 600;
+    color: #000;
+}
+
+.header h2 span {
     color: #4474ba;
     font-family: cursive;
 }
 
-#page1 #dashboard-content #overview button{
-    padding: 1vw 2vw;
-    background-color: #000000;
-    color: white;
-    border: none;
-    border-radius: 0.5vw;
-    font-size: 1.5vw;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.button-group {
+    display: flex;
+    gap: 1vw;
 }
 
-#page1 #dashboard-content #overview #btn{
-    display: flex;
-    /* flex-direction: column; */
+.button-group button {
+    padding: 0.8vw 2vw;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 0.6vw;
+    font-size: 1.1vw;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-group button:hover {
+    background-color: #222;
+    transform: scale(1.05);
+}
+
+#group-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2vw;
+}
+
+.group-card {
+    background-color: #fff;
+    border-radius: 1vw;
+    padding: 1.5vw;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
+}
+
+.group-card:hover {
+    transform: translateY(-5px);
+}
+
+.group-top {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 1vw;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1vw;
 }
-#page1 #dashboard-content #overview .info-boxes{
-    margin-top: 2vw;
+
+.group-top h3 {
+    font-size: 1.2vw;
+    margin-bottom: 0.3vw;
+    color: #333;
 }
+
+.group-top p {
+    font-size: 1vw;
+    color: #4474ba;
+    font-weight: bold;
+}
+
+.group-status {
+    background-color: #4474ba;
+    color: white;
+    padding: 0.3vw 1vw;
+    border-radius: 1vw;
+    font-size: 0.9vw;
+    font-weight: 500;
+}
+
+.metrics {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1vw;
+    margin-top: 1vw;
+}
+
+.metric {
+    flex: 1 1 30%;
+    background-color: #f9f9f9;
+    border-radius: 0.8vw;
+    padding: 1vw;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.metric h4 {
+    font-size: 1vw;
+    color: #000;
+    margin-bottom: 0.5vw;
+}
+
+.metric p {
+    font-size: 0.95vw;
+    font-weight: 500;
+    color: #555;
+}
+
 
 #page1 #add-user input{
     height: 3vw;
@@ -294,3 +390,228 @@ html,body{
     padding: 0.5vw;
     border-radius: 50%;
 }
+#contacts #top #top1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
+
+#contacts #top #top1 h1{
+    font-size: 1.5vw;
+}
+
+#contacts #top #top1 #grpsize #menu{
+    height: 3vw;
+    width: 30vw;
+    background-color: #f2f2f2;
+    border-radius: 1vw;
+    font-size: 1.5vw;
+    padding-left: 1vw;
+}
+#contacts #top{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#contacts #top #top1 input{
+    height: 3vw;
+    width: 30vw;
+    background-color: #f2f2f2;
+    border-radius: 1vw;
+    font-size: 1.5vw;
+    padding-left: 1vw;
+}
+
+#contacts #top #top2 input{
+    height: 3vw;
+    width: 30vw;
+    background-color: #f2f2f2;
+    border-radius: 1vw;
+    font-size: 1.5vw;
+    padding-left: 1vw;
+}
+
+#contacts #top #top2 h1{
+    font-size: 1.5vw;
+}
+
+#contacts #top #top2 button{
+    background-color: black;
+    color: white;
+    height: 3vw;
+    width: 10vw;
+    font-size: 1.2vw;
+    border: none;
+    border-radius: 1.2vw;
+}
+
+#contacts #top #top2{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 2vw;
+}
+
+#page1 #contacts #bottom{
+    background-color: #f5f5f5;
+    width: 40vw;
+    padding: 2vw;
+    height: 15vw;
+    border-radius: 2vw;
+    margin-top: 2vw;
+}
+
+#page1 #contacts #bottom #frnd1{
+    margin-top: 1vw;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2vw;
+    padding: 1vw;
+    border-radius: 1vw;
+}
+#page1 #contacts #bottom #frnd1 p{
+    font-size: 1.5vw;
+    font-weight: 400;
+}
+
+#page1 #contacts #bottom #frnd1 h1{
+    font-size: 1vw;
+    font-weight: 400;
+    background-color: greenyellow;
+    padding: 0.5vw;
+    border-radius: 1.5vw;
+}
+#page1 #contacts #bottom #frnd1 i{
+    background-color: red;
+    padding: 0.5vw;
+    border-radius: 50%;
+}
+
+#page1 #contacts button{
+    background-color: black;
+    color: white;
+    height: 3vw;
+    width: 10vw;
+    font-size: 1.2vw;
+    border: none;
+    border-radius: 1.2vw;
+    margin-top: 2vw;
+    /* margin-left: 50vw; */
+}
+
+#page1 #contacts #btn2 button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* for overview section */
+.section {
+    display: none;
+  }
+  .section.active {
+    display: block;
+  }
+  
+
+
+/* for logout */
+
+#logout.section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+  }
+
+  #logout h2 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  #logout p {
+    color: #666;
+    margin-bottom: 25px;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .yes-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+
+  .yes-btn:hover {
+    background-color: #c0392b;
+  }
+
+  .no-btn {
+    background-color: #bdc3c7;
+    color: #333;
+  }
+
+  .no-btn:hover {
+    background-color: #95a5a6;
+  }
+
+  .message {
+    display: none;
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+
+
+  /* wallet overiew section  */
+  
+  
+  .section.active {
+    display: block;
+  }
+  
+  .group-card1 {
+    background-color: #eef4ff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 6px solid #007bff;
+    border-radius: 8px;
+  }
+  
+  .wallet-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  .wallet-table th,
+  .wallet-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .wallet-table th {
+    background-color: #f0f0f0;
+  }

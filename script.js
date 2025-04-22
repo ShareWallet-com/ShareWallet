@@ -81,7 +81,7 @@ if (target) {
 }
 
 
-gsap.from(["#page7 #left", "#page7 #right"], {
+gsap.from(["#page7", "#page7 "], {
     scrollTrigger: {
         trigger: "#page7",
         scroller: "#main",

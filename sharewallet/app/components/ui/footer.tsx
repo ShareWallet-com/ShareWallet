@@ -10,8 +10,6 @@ export default function Footer() {
 
       <div className="w-[85%] max-w-6xl bg-white shadow-2xl rounded-3xl p-10 relative z-10">
         <div className="flex flex-col lg:flex-row justify-between gap-12">
-
-          {/* Left */}
           <div className="lg:w-1/2 space-y-6">
             <img
               className="w-40"
@@ -32,19 +30,13 @@ export default function Footer() {
               <FaFacebook className="hover:text-black cursor-pointer" />
             </div>
           </div>
-
-          {/* Right */}
           <div className="flex gap-12">
-
-            {/* Product */}
             <div className="space-y-3">
               <p className="font-semibold text-sm">Product</p>
               <p className="text-sm text-[#6b6b6b] hover:text-black cursor-pointer">Features</p>
               <p className="text-sm text-[#6b6b6b] hover:text-black cursor-pointer">Pricing</p>
               <p className="text-sm text-[#6b6b6b] hover:text-black cursor-pointer">Changelog</p>
             </div>
-
-            {/* Resources */}
             <div className="space-y-3">
               <p className="font-semibold text-sm">Resources</p>
               <p className="text-sm text-[#6b6b6b] hover:text-black cursor-pointer">Documentation</p>

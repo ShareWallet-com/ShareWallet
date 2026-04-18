@@ -23,7 +23,7 @@ export async function POST(req: Request){
         });
 
         return NextResponse.json({message:"User created successfully"})
-    } catch (error) {
+    } catch {
         return NextResponse.json({error:"Something wnet Wrong"},{status:500})
     }
 }

@@ -75,6 +75,7 @@ export const handlers: NextAuthOptions = {
                 session.user.id = token.id;
                 session.user.email = token.email;
             }
+            console.log("SESSION CREATED:", session);
             return session;
         }
     },

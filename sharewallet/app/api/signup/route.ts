@@ -22,6 +22,9 @@ export async function POST(req: Request){
             }
         });
 
+        // const verificationToken = newUser.getVerificiationToken
+        // await newUser.
+
         return NextResponse.json({message:"User created successfully"})
     } catch {
         return NextResponse.json({error:"Something wnet Wrong"},{status:500})

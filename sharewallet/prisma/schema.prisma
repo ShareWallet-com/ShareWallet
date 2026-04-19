@@ -8,20 +8,29 @@ datasource db {
 }
 
 model User{
-  id                          String    @id @default(cuid())
-  fullName                    String?
-  email                       String
-  phoneNo                     Int?
-  password                    String
-  username                    String?    @unique
-  role                        Role      @default(USER)
-  createdAt                   DateTime  @default(now())
-  members                     Group_members[]
-  notification                notifications[]
-  emergency_vote              emergency_vote[]
-  transactions                transactions[]
-  emergency_fund_requests     emergency_fund_requests[]
-  contributions               contributions[]
+  id                                    String              @id @default(cuid())
+  email                                 String              @unique
+  password                              String
+  isVerified                            Boolean             @default(false)
+  role                                  Role                @default(USER)
+  createdAt                             DateTime            @default(now())
+  members                               GroupMembers[]
+  notification                          Notification[]
+  emergency_vote                        EmergencyVote[]
+  transactions                          Transactions[]
+  emergency_fund_requests               EmergencyFundRequest[]
+  contributions                         Contributions[]
+  userDetails                           UserDetails?
+  sender_id                             ChatMessage[]
+}
+
+model UserDetails{
+  id                                    String              @id @default(cuid())
+  fullName                              String
+  phoneNo                               String
+  username                              String
+  user_id                               String    @unique
+  user                                  User       @relation(fields: [user_id],references: [id],onDelete: Cascade)
 }
 
 model Group{
@@ -33,14 +42,14 @@ model Group{
   contribution_deadline       DateTime
   withdrawal_conditions       String
   role                        Group_Role  @default(ADMIN)
-  members                     Group_members[]
-  chatMessage                 chat_message[]
-  transactions                transactions[]
-  emergency_fund_requests     emergency_fund_requests[]
-  contributions               contributions[]
+  members                     GroupMembers[]
+  chatMessage                 ChatMessage[]
+  transactions                Transactions[]
+  emergency_fund_requests     EmergencyFundRequest[]
+  contributions               Contributions[]
 }
 
-model Group_members{
+model GroupMembers{
   id                                    String     @id @default(cuid())
   user_id                               String
   user                                  User       @relation(fields: [user_id],references: [id],onDelete: Cascade)
@@ -50,7 +59,7 @@ model Group_members{
   
 }
 
-model contributions{
+model Contributions{
   id                                    String @id @default(cuid())
   amount                                Int
   month                                 Int
@@ -63,20 +72,20 @@ model contributions{
   group                                 Group      @relation(fields: [group_id],references: [id],onDelete: Cascade)
 }
 
-model emergency_fund_requests{
+model EmergencyFundRequest{
   id                                    String @id @default(cuid())
   reason                                String
   amount_requested                      Int
   emergency_status                      emergency_status  @default(PENDING)
-  cretaed_at                            DateTime  @default(now())
+  created_at                            DateTime  @default(now())
   user_id                               String
   user                                  User       @relation(fields: [user_id],references: [id],onDelete: Cascade)
   group_id                              String      @unique
   group                                 Group      @relation(fields: [group_id],references: [id],onDelete: Cascade)
-  emergency                             emergency_vote[]
+  emergency                             EmergencyVote[]
 }
 
-model transactions{
+model Transactions{
   id                                  String @id @default(cuid())
   type                                transaction_type   
   amount                              Int
@@ -88,30 +97,31 @@ model transactions{
   user                                User       @relation(fields: [user_id],references: [id],onDelete: Cascade)
 }
 
-model emergency_vote{
+model EmergencyVote{
   id                                  String @id @default(cuid())
   request_id                          String
-  emergency_fund_requests             emergency_fund_requests      @relation(fields: [request_id],references: [id],onDelete: Cascade)
+  emergency_fund_requests             EmergencyFundRequest      @relation(fields: [request_id],references: [id],onDelete: Cascade)
   user_id                             String
   user                                User       @relation(fields: [user_id],references: [id],onDelete: Cascade)
   vote                                vote
   voted_at                            DateTime @default(now())  
 }
 
-model notifications{
+model Notification{
   id                                  String @id @default(cuid())
   user_id                             String
   user                                User       @relation(fields: [user_id],references: [id],onDelete: Cascade)
   title                               String
   body                                String
   type                                String
-  is_read                             Boolean
+  is_read                             Boolean       @default(false)
   created_at                          DateTime @default(now())
 }
 
-model chat_message{
+model ChatMessage{
   id                                  String @id @default(cuid())
-  // sender_id
+  user_id                               String    @unique
+  user                                  User       @relation(fields: [user_id],references: [id],onDelete: Cascade)
   group_id                            String
   group                               Group      @relation(fields: [group_id],references: [id],onDelete: Cascade)
   message                             String

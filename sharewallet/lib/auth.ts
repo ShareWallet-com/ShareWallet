@@ -2,6 +2,25 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "./prisma";
 import argon2 from "argon2";
+import NextAuth from "next-auth";
+
+declare module "next-auth"{
+    interface Session{
+        user:{
+            id:string;
+            email:string;
+            name?:string | null;
+            image?:string| null;
+        };
+    }
+}
+
+declare module "next-auth/jwt"{
+    interface JWT{
+        id:string;
+        email:string;
+    }
+}
 
 export const handlers: NextAuthOptions = {
     providers: [
@@ -23,8 +42,8 @@ export const handlers: NextAuthOptions = {
                     throw new Error("User not Found");
                 }
                 const isVaild = await argon2.verify(
-                    credentials.password,
-                    user.password
+                    user.password,
+                    credentials.password  
                 )
 
                 if(!isVaild){
@@ -37,5 +56,27 @@ export const handlers: NextAuthOptions = {
                 }
             }
         })
-    ]
+    ],
+    session:{
+        strategy:"jwt",
+    },
+
+    callbacks:{
+        async jwt({token,user }){
+            if(user){
+                if (user.id) token.id = user.id;
+                if (user.email) token.email = user.email;
+            }
+            return token;
+        },
+
+        async session({session,token}){
+            if (session.user) {
+                session.user.id = token.id;
+                session.user.email = token.email;
+            }
+            return session;
+        }
+    },
+    secret: process.env.NEXTAUTH_SECRET,
 };

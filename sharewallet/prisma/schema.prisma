@@ -51,13 +51,13 @@ model Group{
 }
 
 model GroupMembers{
-  id                                    String     @id @default(cuid())
+  id                                    String      @id @default(cuid())
   user_id                               String
-  user                                  User       @relation(fields: [user_id],references: [id],onDelete: Cascade)
-  group_id                              String      @unique
-  group                                 Group      @relation(fields: [group_id],references: [id],onDelete: Cascade)
+  user                                  User        @relation(fields: [user_id],references: [id],onDelete: Cascade)
+  group_id                              String      
+  group                                 Group       @relation(fields: [group_id],references: [id],onDelete: Cascade)
   role                                  Group_Role  @default(MEMBER)
-  
+  @@unique([user_id, group_id])
 }
 
 model Contributions{

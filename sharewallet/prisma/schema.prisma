@@ -14,6 +14,7 @@ model User{
   isVerified                            Boolean             @default(false)
   role                                  Role                @default(USER)
   createdAt                             DateTime            @default(now())
+  uniqueuserCode                        String?              @unique
   members                               GroupMembers[]
   notification                          Notification[]
   emergency_vote                        EmergencyVote[]
@@ -39,7 +40,7 @@ model Group{
   description                 String
   monthlyContribution         Int
   minimum_member              Int
-  contribution_deadline       DateTime
+  contribution_deadline       DateTime?
   withdrawal_conditions       String
   role                        Group_Role  @default(ADMIN)
   members                     GroupMembers[]

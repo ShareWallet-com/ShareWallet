@@ -4,11 +4,16 @@ export function proxy(req: NextRequest) {
     const token = req.cookies.get("token")?.value;
 
     if (!token) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        const loginUrl = new URL("/login", req.url);
+        return NextResponse.redirect(loginUrl);
     }
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/api/group/:path*", "/api/user/:path*"],
+    matcher: [
+        "/dashboard/:path*",
+        "/api/group/:path*",
+        "/api/user/:path*"
+    ],
 };

@@ -37,6 +37,7 @@ export default function Login(){
             const res = await fetch("/api/signin",{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
+                credentials: "include",
                 body:JSON.stringify({
                     email:formData.email,
                     password:formData.password

@@ -91,7 +91,7 @@ export async function PUT(req:Request){
         }
         const userId = decoded.id;
         const { fullName, phoneNo, username } = await req.json();
-        const user = prisma.userDetails.update({
+        const user = await prisma.userDetails.update({
             where:{user_id:userId},
             data:{
                 fullName:fullName.trim().toUpperCase(),

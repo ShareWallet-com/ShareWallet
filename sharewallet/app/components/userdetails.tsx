@@ -1,9 +1,7 @@
 "use client"
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export default function UserDetails({ setOpen }) {
-    const router = useRouter();
     const [formData, setFormData] = useState({
         fullName: "",
         phoneNo: "",
@@ -11,12 +9,6 @@ export default function UserDetails({ setOpen }) {
     })
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-        useEffect(() => {
-        const token = document.cookie.includes("token");
-            if (token) {
-            router.push("/dashboard");
-        }
-    }, [router]);
     const validateForm = () => {
         if (!formData.fullName) return "Fullname is required";
         if (!formData.username) return "Username is required";

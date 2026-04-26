@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Login(){
     const router = useRouter();
@@ -44,7 +45,12 @@ export default function Login(){
                 })
             })
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Signup failed");
+            if (!res.ok) {
+                toast.error(data.error);
+                throw new Error(data.error );
+            }
+
+            toast.success(data.message || "Login Successful ✅");
             router.push("/dashboard");
         }catch(err){
             setError((err as Error).message)

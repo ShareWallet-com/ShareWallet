@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { toast } from "react-toastify";
 
 export default function UserDetails({ setOpen }) {
     const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export default function UserDetails({ setOpen }) {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
-        
+
         const validationError = validateForm();
         if (validationError) return setError(validationError);
         try {
@@ -35,8 +36,15 @@ export default function UserDetails({ setOpen }) {
                     phoneNo: formData.phoneNo,
                 })
             })
-            if (!res.ok) throw new Error("Something went wrong");
+            const data = await res.json();
+            if (!res.ok) {
+                toast.error(data.error || "Failed to save details");
+                // throw new Error(data.error || "Failed to save details");
+            }else{
+                    toast.success(data.message || "Details saved successfully");
+            }
             setOpen(false);
+
         } catch (err) {
             setError((err as Error).message);
         } finally {
@@ -54,12 +62,12 @@ export default function UserDetails({ setOpen }) {
                         <p className="text-xs text-gray-400">Tell us a bit about yourself to get started.</p>
                     </div>
 
-                    <form 
-                    onSubmit={handleSubmit}
-                    className="w-96 h-80 border-[#dddddd] border rounded-2xl flex items-center justify-center flex-col gap-4">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="w-96 h-80 border-[#dddddd] border rounded-2xl flex items-center justify-center flex-col gap-4">
                         <div
-                        
-                        className="w-full flex flex-col items-center justify-center gap-4 ">
+
+                            className="w-full flex flex-col items-center justify-center gap-4 ">
                             <div className="w-[90%] flex flex-col  ">
                                 <p className="text-[#1d1c1c] text-sm font-semibold">Fullname</p>
                                 <input

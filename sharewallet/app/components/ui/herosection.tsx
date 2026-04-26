@@ -1,6 +1,9 @@
+"use client"
+import { useRouter } from "next/navigation"
 import Navbar from "../navbar"
 
 export default function Herosection(){
+    const router = useRouter();
     return(
         <div className="min-h-screen w-full bg-[#fafafa] relative">
             <div className="absolute inset-0 z-0"
@@ -21,7 +24,10 @@ export default function Herosection(){
                     <p className="w-2/3">ShareWallet helps students, families, and groups manage collective savings with transparent 
                     contributions, emergency fund requests, and real-time collaboration.</p>
                 </div>
-                <button className="bg-[#6D4DFE] text-white px-4 py-2 text-xs rounded-md font-semibold">Create Your Account</button>
+                <button 
+                onClick={() => router.push("/login")}
+                
+                className="bg-[#6D4DFE] cursor-pointer text-white px-4 py-2 text-xs rounded-md font-semibold">Create Your Account</button>
             </div>
         </div>
 

@@ -1,6 +1,8 @@
 "use client"
 import { useEffect, useState } from "react";
 import { Pencil, Check, X } from "lucide-react";
+import { toast } from "react-toastify";
+
 interface Userdetails {
   fullName: string;
   username: string;
@@ -10,6 +12,7 @@ interface Userdetails {
 export default function Userprofile() {
   const [profile, setProfile] = useState<Userdetails | null>(null);
   const [editMode, setEditMode] = useState(false);
+  
   useEffect(() => {
     const fetchprofile = async () => {
       try {
@@ -41,10 +44,10 @@ export default function Userprofile() {
     })
     const data = await res.json();
     if (data.success) {
-      alert("Profile updated successfully");
+      toast.success(data.message || "Profile updated successfully");
       setEditMode(false);
     } else {
-      alert("Failed to update profile");
+      toast.error(data.error || "Failed to update profile");
     }
 
   }

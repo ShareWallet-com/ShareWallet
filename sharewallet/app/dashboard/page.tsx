@@ -39,6 +39,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-end gap-4 px-6 py-4 border-b bg-white">
         <button
           onClick={() => setOpen(true)}
+
           className="bg-[#1d1c1c] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:opacity-90 transition"
         >
           <CirclePlus size={18} />

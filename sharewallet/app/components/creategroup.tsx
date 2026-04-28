@@ -1,4 +1,6 @@
+""
 export default function Creategroup({setgroupOpen}) {
+
     return (
         <div>
             <div className=" animate-in fixed inset-0 backdrop-blur-sm bg-black/10 flex justify-center items-center">

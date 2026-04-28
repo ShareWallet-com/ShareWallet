@@ -7,10 +7,12 @@ import Logout from "../components/logout";
 import UserDetails from "../components/userdetails";
 import Creategroup from "../components/creategroup";
 import Home from "../components/ui/DashboardComponent/dashome";
+import Addfriend from "../components/addfriend";
 
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
   const [groupopen, setgroupOpen] = useState(false);
+  const [friendopen, setfriendOpen] = useState(false);
   const [page, setPage] = useState("home");
 
   const menuItems = [
@@ -37,6 +39,14 @@ export default function Dashboard() {
 
       {/* Top Action Buttons */}
       <div className="flex items-center justify-end gap-4 px-6 py-4 border-b bg-white">
+      <button
+          onClick={() => setfriendOpen(true)}
+
+          className="bg-[#1d1c1c] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:opacity-90 transition"
+        >
+          <CirclePlus size={18} />
+          Add Friend
+        </button>
         <button
           onClick={() => setOpen(true)}
 
@@ -124,6 +134,7 @@ export default function Dashboard() {
       </div>
 
       {/* Popup Modals */}
+      {friendopen && <Addfriend setfriendOpen={setfriendOpen}/>}
       {open && <UserDetails setOpen={setOpen} />}
       {groupopen && <Creategroup setgroupOpen={setgroupOpen} />}
     </div>

@@ -5,10 +5,10 @@ export async function POST(req: Request) {
   try {
     const { senderId, uniqueuserCode } = await req.json();
 
-    const receiver = await prisma.user.findUnique({
+    const receiver = await prisma.user.findFirst({
       where: {
-        uniqueuserCode: uniqueuserCode
-      }
+        uniqueuserCode,
+      },
     });
 
     if (!receiver) {
@@ -18,12 +18,12 @@ export async function POST(req: Request) {
       );
     }
 
-    if (receiver.id === senderId) {
-      return NextResponse.json(
-        { error: "You cannot send request to yourself" },
-        { status: 400 }
-      );
-    }
+    // if (receiver.id === senderId) {
+    //   return NextResponse.json(
+    //     { error: "You cannot send request to yourself" },
+    //     { status: 400 }
+    //   );
+    // }
 
     const existing = await prisma.friendRequest.findUnique({
       where: {
@@ -58,36 +58,47 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET(req:Request){
-  try{
-    const { searchParams } = new URL(req.url);
-    const uniqueuserCode = searchParams.get("uniqueuserCode");
-    if (!uniqueuserCode) {
-      return NextResponse.json(
-        { error: "Missing unique user code" },
-        { status: 400 }
-      );
-    }
-    const user = await prisma.user.findUnique({
-      where:{
-         uniqueuserCode: uniqueuserCode
-      },
-      include: {
-        userDetails: true
-      }
-    })
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const query = searchParams.get("q");
 
-    if (!user) {
-      return NextResponse.json(
-        { error: "User not found" },
-        { status: 404 }
-      );
-    }
-    return NextResponse.json(user);
-  } catch(error){
-    return NextResponse.json(
-      { error: "Something went wrong" },
-      { status: 500 }
-    );
+  if (!query) return NextResponse.json([]);
+
+  try {
+    const users = await prisma.user.findMany({
+      where: {
+        OR: [
+          {
+            uniqueuserCode: {
+              contains: query,
+              mode: "insensitive",
+            },
+          },
+          {
+            userDetails: {
+              is:{fullName: {
+                contains: query,
+                mode: "insensitive",
+              },
+            },
+            },
+          },
+        ],
+      },
+      select: {
+        id: true,
+        uniqueuserCode: true,
+        userDetails: {
+          select: {
+            fullName: true,
+          },
+        },
+      },
+      take: 5
+    });
+
+    return NextResponse.json(users);
+  } catch (error) {
+    return NextResponse.json({ error: "Search failed" }, { status: 500 });
   }
 }

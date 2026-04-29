@@ -3,13 +3,13 @@ import Friendrequest from "../../friendrequest";
 import TransactionHistory from "../../TransactionHistory";
 import Userprofile from "../../userprofile";
 
-export default function Home( user) {
+export default function Home() {
     return (
         <div>
             <div className="flex gap-4">
                 <div>
                     <Userprofile />
-                    <Friendrequest user={user}/>
+                    <Friendrequest/>
                 </div>
                 <Friendlist />
                 <TransactionHistory />

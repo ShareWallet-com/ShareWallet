@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useEffect, useState } from "react";
 
 interface FriendRequest {
@@ -13,42 +14,35 @@ interface FriendRequest {
   };
 }
 
-interface Props {
-  user: {
-    id: string;
-  };
-}
 
-export default function Friendrequest({ user }: Props) {
+
+export default function Friendrequest() {
   const [request, setRequest] = useState<FriendRequest[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRequests = async () => {
       try {
+        const userRes = await fetch("/api/me");
+        const userData = await userRes.json();
+
         const res = await fetch(
-          `/api/friends/accept?userId=${user.id}`
+          `/api/friends/accept?userId=${userData.id}`
         );
 
         const data = await res.json();
 
-        if (!res.ok) {
-          console.log(data.error);
-          return;
+        if (res.ok) {
+          setRequest(data);
         }
-
-        setRequest(data);
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
     };
-
-    if (user?.id) {
-      fetchRequests();
-    }
-  }, [user?.id]);
+    fetchRequests();
+  }, []);
 
   return (
     <div className="bg-white shadow-xl rounded-2xl w-96 min-h-[35vh] p-5 border border-gray-100">
